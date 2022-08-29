@@ -1,0 +1,11 @@
+[Unit]
+Description=Game
+After=network.target
+[Service]
+User=neutron
+Group=www-data
+WorkingDirectory=/home/neutron/Game
+Environment="PATH=/home/neutron/Game/venv/bin"
+ExecStart=/home/neutron/Game/venv/bin/gunicorn --worker-class eventlet -w 1 --bind 127.0.0.1:4200 wsgi:app
+[Install]
+WantedBy=multi-user.target
